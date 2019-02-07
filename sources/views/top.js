@@ -8,7 +8,7 @@ class Top extends JetView{
 			width:180, layout:"y", select:true,
 			template:"<span class='webix_icon #icon#'></span> #value# ",
 			data:[
-				{ value:"Contacts", id:"contacts", icon:"wxi-user" },
+				{ value:"Contacts", id:"ContactsPage", icon:"wxi-user" },
 				{ value:"Data", id:"data",  icon:"wxi-pencil" },
 				{ value:"Settings subviews", id:"settings",  icon:"wxi-alert" }				
 			],

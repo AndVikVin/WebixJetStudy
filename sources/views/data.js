@@ -1,21 +1,20 @@
 import {JetView} from "webix-jet";
-import CountriesTable from "./countriesTable";
-import StatusTable from "./statusTable";
+import DataTable from "./DataTable";
+import {countries} from "../models/countries";
+import {statuses} from "../models/statuses";
 
 export default class DataView extends JetView{
 	config(){
 		const multiview = {
-			value:"multiview",
-			id:"multiview",
+			view:"multiview",
 			cells:[	
-				CountriesTable,
-				StatusTable
+				{id:"CountriesTable", $subview:new DataTable(this.app,"",countries)},
+				{id:"StatusTable", $subview:new DataTable(this.app,"",statuses)}
 			]
 		};
 
 		const tabbar = {
 			view:"tabbar",
-			id:"dataTab",
 			multiview:true,
 			value:"CountriesTable",
 			options:[
@@ -23,21 +22,9 @@ export default class DataView extends JetView{
 				{id:"StatusTable", value:"Statuses"}
 			]
 		};
-
-		const toolbar = {
-			view:"toolbar",
-			id:"dataToolbar",
-			elements:[
-				{},
-				{view:"button", type:"form", value:"Add", width:80, align:"right"},
-				{view:"button", type:"form", value:"Delete", width:80, align:"right"}
-			]
-		};
-
 		return { rows:[
 			tabbar,
-			multiview,
-			toolbar
+			multiview
 		] };
 	}
 }

@@ -6,8 +6,6 @@ class Contacts extends JetView{
 		const usersList = {
 			view:"list", id:"usersList",
 			select:true, template:"#Name# #Email#", 
-			data:contacts,
-			fillspace:true
 		};
 		const usersForm = {
 			view:"form",	width:300,
@@ -24,9 +22,9 @@ class Contacts extends JetView{
 			]
 		};
 	}
-	// init(view){
-	// 	console.log(view);
-	// }
+	init(view){
+		view.queryView("list").parse(contacts);
+	}
 }
 
 export default Contacts;

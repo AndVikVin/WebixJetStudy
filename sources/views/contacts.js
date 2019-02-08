@@ -1,5 +1,6 @@
 import {JetView} from "webix-jet";
-import {contacts} from "../models/contacts";
+import ContactForm from "./ContactForm";
+import {contactsColl} from "../models/contacts";
 import "../styles/myCss.css";
 
 class Contacts extends JetView{
@@ -14,20 +15,37 @@ class Contacts extends JetView{
 							this.data.remove(id);
 							return false;
 						}
+					},
+					on:{
+						onAfterSelect:function(id){
+							this.$scope.setParam("id",id,true);
+						}
 					} 
 				},
 				{view:"button",value:"Add", type:"form", inputWidth:180, align:"right", click:()=>{
-					const list = this.getRoot().queryView("list");
-					this.app.callEvent("onAddContact",[list]);
+					contactsColl.add({Name: "name", Email:"email"});
 				}}
 			]
-
 		};
-		return usersList;
+		return {
+			cols:[
+				usersList,
+				ContactForm
+			]
+			
+		};
 	}
-	init(view,url){
-		url[0].params.id = 1;
-		view.queryView("list").parse(contacts);
+	init(view){
+		view.queryView("list").parse(contactsColl);
+		
+	}
+	urlChange(view){
+		const list = view.queryView("list");
+		let id = this.getParam("id");
+
+		id = id || list.getFirstId();
+		if(id && list.exists(id))
+			list.select(id);
 	}
 }
 

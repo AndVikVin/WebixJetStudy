@@ -1,19 +1,20 @@
 import {JetView} from "webix-jet";
 import {countries} from "../models/countries";
 import {statuses} from "../models/statuses";
-import {contactsColl} from "../models/contacts"
-import { format } from "url";
+import {contactsColl} from "../models/contacts";
 
 class ContactForm extends JetView{
 	config(){
+		const _ = this.app.getService("locale")._;
 		return{
 			view:"form",	width:300,
 			elements:[
-				{view:"text", label:"User name", name:"Name"},
-				{view:"text", label:"Email", name:"Email"},
+				{view:"text", label:_("User name"), name:"Name"},
+				{view:"text", label:_("Email"), name:"Email"},
 				{
 					view:"combo",
-					label:"Country",
+					label:_("Country"),
+					name:"Country",
 					suggest: {
 						data:countries,
 						body:{
@@ -23,7 +24,8 @@ class ContactForm extends JetView{
 				},
 				{
 					view:"combo",
-					label:"Status",
+					label:_("Status"),
+					name:"Status",
 					suggest: {
 						data:statuses,
 						body:{
@@ -33,13 +35,13 @@ class ContactForm extends JetView{
 				},
 				{
 					view:"button",
-					value:"Save",
+					value:_("Save"),
 					type:"form",
 					inputWidth:180,
 					click:()=>{
 						const id = this.getParam("id");
 						const newValues = this.getRoot().getValues();
-						contactsColl.updateItem(id,newValues)
+						contactsColl.updateItem(id,newValues);
 					}
 				}
 			]
@@ -47,8 +49,13 @@ class ContactForm extends JetView{
 	}
 	urlChange(view){
 		const id = view.$scope.getParam("id");
-		const values = contactsColl.getItem(id)
-		view.setValues(values);
+		const values = contactsColl.getItem(id);
+		if(values){view.setValues({
+			Name:values.Name,
+			Email:values.Email,
+			Country:countries[values.Country-1],
+			Status:statuses[values.Status]
+		});}
 	}
 }
 

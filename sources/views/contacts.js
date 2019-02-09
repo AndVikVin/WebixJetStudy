@@ -5,6 +5,7 @@ import "../styles/myCss.css";
 
 class Contacts extends JetView{
 	config(){
+		const _ = this.app.getService("locale")._;
 		const usersList = {
 			rows:[
 				{
@@ -22,7 +23,7 @@ class Contacts extends JetView{
 						}
 					} 
 				},
-				{view:"button",value:"Add", type:"form", inputWidth:180, align:"right", click:()=>{
+				{view:"button",value:_("Add"), type:"form", inputWidth:180, align:"right", click:()=>{
 					contactsColl.add({Name: "name", Email:"email"});
 				}}
 			]

@@ -5,6 +5,7 @@ import {statuses} from "../models/statuses";
 
 export default class DataView extends JetView{
 	config(){
+		const _ = this.app.getService("locale")._;
 		const multiview = {
 			view:"multiview",
 			cells:[	
@@ -18,8 +19,8 @@ export default class DataView extends JetView{
 			multiview:true,
 			value:"CountriesTable",
 			options:[
-				{id:"CountriesTable",value:"Countries"},
-				{id:"StatusTable", value:"Statuses"}
+				{id:"CountriesTable",value:_("Countries")},
+				{id:"StatusTable", value:_("Statuses")}
 			]
 		};
 		return { rows:[

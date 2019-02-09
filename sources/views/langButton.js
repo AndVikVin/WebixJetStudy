@@ -1,4 +1,4 @@
-import {JetView, plugins} from "webix-jet";
+import {JetView} from "webix-jet";
 
 class LangButton extends JetView{
 	config(){
@@ -8,6 +8,7 @@ class LangButton extends JetView{
 				{id:"en", value:"English"},
 				{id:"ru", value:"Russian"},				
 			],
+			// When clicked view of a segment button didn't change.
 			click:() => this.toggleLanguage()
 		};
 	}
@@ -15,7 +16,6 @@ class LangButton extends JetView{
 		const langs = this.app.getService("locale");
 		const value = this.getRoot().getValue();
 		langs.setLang(value);
-		console.log(value)
 	}
 	init(){
 	}

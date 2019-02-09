@@ -5,5 +5,10 @@ export default{
     "Status":"Статус",
     "Countries":"Страны",
     "Statuses":"Статусы",
-    "Name":"Имя"
-}
+				"Name":"Имя",
+				"Contacts":"Контакты",
+				"Data":"Данные",
+				"Settings subviews":"Настройки вьюшек",
+				"User name":"Имя пользователя",
+				"Delete":"Удалить"
+};

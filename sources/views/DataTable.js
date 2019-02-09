@@ -6,12 +6,13 @@ class DataTable extends JetView{
 		this._CSdata = data;
 	}
 	config(){
+		const _ = this.app.getService("locale")._;
 		const toolbar = {
 			view:"toolbar",
 			elements:[
 				{},
-				{view:"button", type:"form", value:"Add", width:80, align:"right"},
-				{view:"button", type:"form", value:"Delete", width:80, align:"right"}
+				{view:"button", type:"form", value:_("Add"), width:120, align:"right"},
+				{view:"button", type:"form", value:_("Delete"), width:120, align:"right"}
 			]
 		};
 		const dataTable = {

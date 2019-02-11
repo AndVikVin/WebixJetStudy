@@ -11,13 +11,16 @@ class DataTable extends JetView{
 			view:"toolbar",
 			elements:[
 				{},
-				{view:"button", type:"form", value:_("Add"), width:120, align:"right"},
+				{view:"button", type:"form", value:_("Add"), width:120, align:"right", click:()=>{
+					this._CSdata.add({});
+				}},
 				{view:"button", type:"form", value:_("Delete"), width:120, align:"right"}
 			]
 		};
 		const dataTable = {
 			view:"datatable",
 			select:true, scroll:false,
+			editable:true,
 			autoConfig:true
 		};
 

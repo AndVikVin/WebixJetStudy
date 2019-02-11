@@ -2,8 +2,10 @@ import {JetView} from "webix-jet";
 
 class LangButton extends JetView{
 	config(){
+		const langs = this.app.getService("locale");
 		return{
-			view:"segmented", id:"langButton", value:"en", multiview:true,
+			view:"segmented", id:"langButton", value:langs.getLang(),
+			multiview:true,
 			options:[
 				{id:"en", value:"English"},
 				{id:"ru", value:"Russian"},				

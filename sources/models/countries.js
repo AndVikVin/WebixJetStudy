@@ -4,7 +4,7 @@ export const countries = [
 	{"id":3,"Name":"Italy"}
 ];
 
-// export const countriesCol = new webix.DataCollection({
-// 	url:"http://localhost:8096/api/v1/countries/",
-// 	save:"rest->http://localhost:8096/api/v1/countries/"
-// });
+export const countriesColl = new webix.DataCollection({
+	url:"http://localhost:8096/api/v1/countries/",
+	save:"rest->http://localhost:8096/api/v1/countries/"
+});

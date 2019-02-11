@@ -1,9 +1,7 @@
 import {JetView} from "webix-jet";
 import DataTable from "./DataTable";
-import {countries} from "../models/countries";
-// import {countriesColl} from "../models/countreis";
-import {statuses} from "../models/statuses";
-// import {statusesColl} from "../models/statuses";
+import {countriesColl} from "../models/countries";
+import {statusesColl} from "../models/statuses";
 
 export default class DataView extends JetView{
 	config(){
@@ -11,8 +9,8 @@ export default class DataView extends JetView{
 		const multiview = {
 			view:"multiview",
 			cells:[	
-				{id:"CountriesTable", $subview:new DataTable(this.app,"",countries /*countriesColl*/)},
-				{id:"StatusTable", $subview:new DataTable(this.app,"",statuses /*statusesColl*/)}
+				{id:"CountriesTable", $subview:new DataTable(this.app,"",countriesColl)},
+				{id:"StatusTable", $subview:new DataTable(this.app,"",statusesColl)}
 			]
 		};
 

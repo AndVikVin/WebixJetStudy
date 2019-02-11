@@ -1,7 +1,7 @@
 import {JetView} from "webix-jet";
 import ContactForm from "./ContactForm";
-import {contactsColl} from "../models/contacts";
-//import {contactsCollServ} from "../models/contacts"
+// import {contactsColl} from "../models/contacts";
+import {contactsCollServ} from "../models/contacts";
 import "../styles/myCss.css";
 
 class Contacts extends JetView{
@@ -14,8 +14,8 @@ class Contacts extends JetView{
 					select:true, template:"#Name# #Email# <span class='webix_icon wxi-close delBut'></span>",
 					onClick:{
 						"wxi-close":function(e,id){
-							this.data.remove(id);
-							// contactsCollServ.remove(id)
+							// this.data.remove(id);
+							contactsCollServ.remove(id);
 							return false;
 						}
 					},
@@ -25,9 +25,9 @@ class Contacts extends JetView{
 						}
 					} 
 				},
-				{view:"button",value:_("Add"), type:"form", inputWidth:180, align:"right", click:()=>{
+				{view:"button",value:_("Add"), type:"form", inputWidth:180, align:"right", /*click:()=>{
 					contactsColl.add({Name: "name", Email:"email"});
-				},/*click:()=>{contactsCollServ.add({Name: "name", Email:"email"})}*/}
+				},*/click:()=>{contactsCollServ.add({Name: "name", Email:"email"});}}
 			]
 		};
 		return {
@@ -39,25 +39,25 @@ class Contacts extends JetView{
 		};
 	}
 	init(view){
-		view.queryView("list").parse(contactsColl);
-		// view.queryView("list").parse(contactsCollServ)
+		// view.queryView("list").parse(contactsColl);
+		view.queryView("list").parse(contactsCollServ);
 		
 	}
 	urlChange(view){
-		//contactsCollServ.waitData.then(()=>{
-		// const list = view.queryView("list");
-		// let id = this.getParam("id");
+		contactsCollServ.waitData.then(()=>{
+			const list = view.queryView("list");
+			let id = this.getParam("id");
 	
-		// id = id || list.getFirstId();
-		// if(id && list.exists(id))
-		// 	list.select(id);
-		//})
-		const list = view.queryView("list");
-		let id = this.getParam("id");
+			id = id || list.getFirstId();
+			if(id && list.exists(id))
+				list.select(id);
+		});
+	// 	const list = view.queryView("list");
+	// 	let id = this.getParam("id");
 
-		id = id || list.getFirstId();
-		if(id && list.exists(id))
-			list.select(id);
+	// 	id = id || list.getFirstId();
+	// 	if(id && list.exists(id))
+	// 		list.select(id);
 	}
 }
 
